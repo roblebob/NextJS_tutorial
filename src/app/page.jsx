@@ -6,7 +6,7 @@ const Home = () => {
     <div className={styles.container}>
       <div className={styles.textContainer}>
         <h1 className={styles.title}>Creative Thoughts Agency.</h1>
-        <p className={styles.description}>
+        <p className={styles.desc}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Est placeat
           ipsam quaerat mollitia dolore?
         </p>
