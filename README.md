@@ -1,5 +1,7 @@
 ## Getting Started
 
+[tutorial](https://www.youtube.com/watch?v=vCOSTG10Y4o&ab_channel=LamaDev)
+
 First, install the dependencies:
 
 ```bash
