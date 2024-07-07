@@ -6,15 +6,18 @@ const AboutPage = () => {
     <div className={styles.container}>
       <div className={styles.textContainer}>
         <h2 className={styles.subtitle}>About Agency</h2>
+
         <h1 className={styles.title}>
           We create digital ideas that are bigger, bolder, braver and better.
         </h1>
+
         <p className={styles.description}>
           We create digital ideas that are bigger, bolder, braver and better. We
           believe in good ideas flexibility and precission We’re world’s Our
           Special Team best consulting & finance solution provider. Wide range
           of web and software development services.
         </p>
+
         <div className={styles.boxes}>
           <div className={styles.box}>
             <h1>10 K+</h1>
@@ -34,12 +37,7 @@ const AboutPage = () => {
       </div>
 
       <div className={styles.imgContainer}>
-        <Image
-          src="/about.png"
-          alt="About Image" 
-          className={styles.img}
-          fill
-        />
+        <Image src="/about.png" alt="About Image" className={styles.img} fill />
       </div>
     </div>
   );
