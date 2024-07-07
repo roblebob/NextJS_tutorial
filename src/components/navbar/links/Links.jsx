@@ -6,7 +6,7 @@ import NavLink from "./navLink/navLink";
 
 const links = [
   {
-    title: "Homepage",
+    title: "Home",
     path: "/",
   },
   {
