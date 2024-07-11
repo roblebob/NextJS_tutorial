@@ -1,10 +1,30 @@
 import Image from "next/image";
 import styles from "./singlePost.module.css";
+import PostUser from "@/components/postUser/PostUser";
+import { Suspense } from "react";
+import { getPost } from "@/lib/data";
 
-const SinglePostPage = ({params}) => {
+// FETCH DATA WITH API
+// const getData = async (slug) => {
+//   const response = await fetch(
+//     `https://jsonplaceholder.typicode.com/posts/${slug}`
+//   );
 
-  console.log(params);
+//   if (!response.ok) {
+//     throw new Error("Something went wrong");
+//   }
 
+//   return response.json();
+// };
+
+
+
+const SinglePostPage = async ({ params }) => {
+  const { slug } = params;
+
+  // const post = await getData(slug);
+  const post = await getPost(slug);
+ 
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -16,7 +36,7 @@ const SinglePostPage = ({params}) => {
         />
       </div>
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>Title</h1>
+        <h1 className={styles.title}>{post.title}</h1>
 
         <div className={styles.detail}>
           <Image
@@ -26,22 +46,18 @@ const SinglePostPage = ({params}) => {
             height={50}
             width={50}
           />
-          <div className={styles.detailText}>
-            <span className={styles.detailTitle}>Author</span>
-            <span className={styles.detailValue}>John Doe</span>
-          </div>
+
+          <Suspense fallback={<div>Loading...</div>}>
+            <PostUser userId={post.userId} />
+          </Suspense>
+
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>12.12.2021</span>
           </div>
         </div>
 
-        <div className={styles.content}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium,
-          accusantium in, perspiciatis provident deserunt animi, nemo tenetur
-          amet accusamus vero reiciendis eius aperiam. Illum molestiae
-          praesentium atque numquam odit officiis?
-        </div>
+        <div className={styles.content}>{post.body}</div>
       </div>
     </div>
   );
