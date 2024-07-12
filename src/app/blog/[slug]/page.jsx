@@ -17,35 +17,29 @@ import { getPost } from "@/lib/data";
 //   return response.json();
 // };
 
-
-
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
   // const post = await getData(slug);
   const post = await getPost(slug);
- 
+
   return (
     <div className={styles.container}>
-      <div className={styles.imgContainer}>
-        <Image
-          src="https://images.pexels.com/photos/3721535/pexels-photo-3721535.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-          fill
-          className={styles.img}
-        />
-      </div>
+      {post.img && (
+        <div className={styles.imgContainer}>
+          <Image
+            src={post.img}
+            alt=""
+            fill
+            className={styles.img}
+          />
+        </div>
+      )}
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{post.title}</h1>
 
         <div className={styles.detail}>
-          <Image
-            className={styles.avatar}
-            src="https://images.pexels.com/photos/3721535/pexels-photo-3721535.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-            height={50}
-            width={50}
-          />
+          
 
           <Suspense fallback={<div>Loading...</div>}>
             <PostUser userId={post.userId} />
@@ -53,11 +47,11 @@ const SinglePostPage = async ({ params }) => {
 
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
-            <span className={styles.detailValue}>12.12.2021</span>
+            <span className={styles.detailValue}>{post.createdAt.toString().slice(4, 16)}</span>
           </div>
         </div>
 
-        <div className={styles.content}>{post.body}</div>
+        <div className={styles.content}>{post.desc}</div>
       </div>
     </div>
   );
