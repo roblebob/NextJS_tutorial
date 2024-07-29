@@ -5,21 +5,20 @@ import { Suspense } from "react";
 import { getPost } from "@/lib/data";
 
 // FETCH DATA WITH API
-// const getData = async (slug) => {
-//   const response = await fetch(
-//     `https://jsonplaceholder.typicode.com/posts/${slug}`
-//   );
+const getData = async (slug) => {
+  const response = await fetch(`http://localhost:3000/api/blog/${slug}`, {cache: "no-store"});
 
-//   if (!response.ok) {
-//     throw new Error("Something went wrong");
-//   }
+  if (!response.ok) {
+    throw new Error("Something went wrong");
+  }
 
-//   return response.json();
-// };
+  return response.json();
+};
 
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
-  const post = await getPost(slug);
+  //const post = await getPost(slug);
+  const post = await getData(slug);
 
   return {
     title: post.title,
@@ -30,8 +29,8 @@ export const generateMetadata = async ({ params }) => {
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
-  // const post = await getData(slug);
-  const post = await getPost(slug);
+  const post = await getData(slug);
+  //const post = await getPost(slug);
 
   return (
     <div className={styles.container}>
@@ -51,7 +50,7 @@ const SinglePostPage = async ({ params }) => {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(4, 16)}
+              {post.createdAt.toString().slice(0, 10)}
             </span>
           </div>
         </div>

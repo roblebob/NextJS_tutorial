@@ -4,19 +4,19 @@ import { getPosts } from "@/lib/data";
 
 // FETCH DATA WITH API
 
-// const getData = async () => {
-//   const response = await fetch("https://jsonplaceholder.typicode.com/posts", {next: {revaluate: 3600}});
+const getData = async () => {
+  const response = await fetch("http://localhost:3000/api/blog", {cache: "no-store"});
 
-//   if (!response.ok) {
-//     throw new Error("Something went wrong");
-//   }
+  if (!response.ok) {
+    throw new Error("Something went wrong");
+  }
 
-//   return response.json();
-// };
+  return response.json();
+};
 
 const BlogPage = async () => {
-  // const posts = await getData();
-  const posts = await getPosts();
+  const posts = await getData();
+  //const posts = await getPosts();
 
   return (
     <div className={styles.container}>
