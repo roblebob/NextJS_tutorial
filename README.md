@@ -28,3 +28,12 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+
+
+
+# to generate a secret key
+```bash
+openssl rand -base64 32
+```
