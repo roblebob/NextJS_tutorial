@@ -3,9 +3,9 @@ import Github from "next-auth/providers/github";
 
 export const {
   handlers: { GET, POST },
+  auth,
   signIn,
   signOut,
-  auth,
 } = NextAuth({
   providers: [
     Github({
